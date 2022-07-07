@@ -1,0 +1,10 @@
+nodejs
+docker e docker compose
+git
+nvm
+
+chrome
+vscode
+slack
+workbench
+fireshot
