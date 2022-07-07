@@ -1,26 +1,33 @@
 #!/bin/bash
 
 echo "
-         tttt                                     tttt                            kkkkkkkk
-      ttt:::t                                  ttt:::t                            k::::::k
-      t:::::t                                  t:::::t                            k::::::k
-      t:::::t                                  t:::::t                            k::::::k
-ttttttt:::::ttttttt      aaaaaaaaaaaaa   ttttttt:::::ttttttt      aaaaaaaaaaaaa    k:::::k    kkkkkkk  aaaaaaaaaaaaa       eeeeeeeeeeee
-t:::::::::::::::::t      a::::::::::::a  t:::::::::::::::::t      a::::::::::::a   k:::::k   k:::::k   a::::::::::::a    ee::::::::::::ee
-t:::::::::::::::::t      aaaaaaaaa:::::a t:::::::::::::::::t      aaaaaaaaa:::::a  k:::::k  k:::::k    aaaaaaaaa:::::a  e::::::eeeee:::::ee
-tttttt:::::::tttttt               a::::a tttttt:::::::tttttt               a::::a  k:::::k k:::::k              a::::a e::::::e     e:::::e
-      t:::::t              aaaaaaa:::::a       t:::::t              aaaaaaa:::::a  k::::::k:::::k        aaaaaaa:::::a e:::::::eeeee::::::e
-      t:::::t            aa::::::::::::a       t:::::t            aa::::::::::::a  k:::::::::::k       aa::::::::::::a e:::::::::::::::::e
-      t:::::t           a::::aaaa::::::a       t:::::t           a::::aaaa::::::a  k:::::::::::k      a::::aaaa::::::a e::::::eeeeeeeeeee
-      t:::::t    tttttta::::a    a:::::a       t:::::t    tttttta::::a    a:::::a  k::::::k:::::k    a::::a    a:::::a e:::::::e
-      t::::::tttt:::::ta::::a    a:::::a       t::::::tttt:::::ta::::a    a:::::a k::::::k k:::::k   a::::a    a:::::a e::::::::e
-      tt::::::::::::::ta:::::aaaa::::::a       tt::::::::::::::ta:::::aaaa::::::a k::::::k  k:::::k  a:::::aaaa::::::a  e::::::::eeeeeeee
-        tt:::::::::::tt a::::::::::aa:::a        tt:::::::::::tt a::::::::::aa:::ak::::::k   k:::::k  a::::::::::aa:::a  ee:::::::::::::e
-          ttttttttttt    aaaaaaaaaa  aaaa          ttttttttttt    aaaaaaaaaa  aaaakkkkkkkk    kkkkkkk  aaaaaaaaaa  aaaa    eeeeeeeeeeeeee
+                              ##                         ##               ###      ###
+                                                         ##                ##       ##
+ ######    ####     #####    ###     #####     #####    #####    ####      ##       ##
+  ##  ##  ##  ##   ##         ##     ##  ##   ##         ##         ##     ##       ##
+  ##  ##  ##  ##    #####     ##     ##  ##    #####     ##      #####     ##       ##
+  #####   ##  ##        ##    ##     ##  ##        ##    ## ##  ##  ##     ##       ##
+  ##       ####    ######    ####    ##  ##   ######      ###    #####    ####     ####
+ ####
+
 "
 
 sudo apt-get update
 
-**Install node**
+#Install node
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+#Docker e Docker Compose install
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install \ ca-certificates \ curl \ gnupg \ lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \ "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt-get update
+sudo apt-get install docker-compose-plugin
+
+echo "Fim!"
